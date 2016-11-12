@@ -10,6 +10,5 @@ from bs4 import BeautifulSoup
 import requests
 
 r = requests.get("https://catalogue.ualberta.ca/Course/Subject?subjectCode=ANTHR")
-soup = BeautifulSoup(r.text, 'html.parser')
+soup = BeautifulSoup(r.text, "html.parser")
 print(soup.get_text())
-input("")
