@@ -24,12 +24,34 @@ departmentNames = []
 for i, val in enumerate(departmentsNums):
     soup_Department = BeautifulSoup(requests.get("http://calendar.ualberta.ca/preview_program.php", \
                                     params = {"poid" : val}).text, "html.parser")
-    print(soup_Department.prettify())
     departmentNames.append(soup_Department.find("h1").string.strip())
     
     traditional = soup_Department.find_all(class_="acalog-core", limit=2)
     for j, value in enumerate(traditional):
+        links = value.find_all("a", href=True)
         
-    
 
-print(departmentNames)
+        for k in links:
+            link = k.attrs["href"].replace("preview_program.php?catoid=6&poid=", "")
+            #print(link)
+            soup_Program = BeautifulSoup(requests.get("http://calendar.ualberta.ca/preview_program.php", \
+                                                      params = {"poid" : link}).text, "html.parser")
+            ProgramName = soup_Program.find("h1").string.replace("(ENG)", "").replace("(Co-op)", "").replace("[Engineering]", "").replace("[Education]", "").strip()
+            courses = soup_Program.find_all(class_ = "acalog-course")
+            for l in courses:
+                classes = l.find_all("a")
+                for n in classes:
+                    lectures = n.string.split(" - ")[0].replace(" ", "")
+                    print(lectures, end=" ")
+                    print(ProgramName, end=" ")
+                    print(departmentNames[i], end=" ")
+                    if j == 0:
+                        isTrad = 1
+                    else:
+                        isTrad = 0
+                c.execute("INSERT INTO programs VALUES (?, ?, ?, ?)", (lectures, ProgramName, departmentNames[i], isTrad))
+        print()
+
+
+conn.commit()
+conn.close()

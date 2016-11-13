@@ -26,7 +26,6 @@ new_column6 = 'Corequisite'
 
 new_column7 = 'Program'
 new_column8 = 'isTrad'
-new_column9 = 'Term'
 new_column10 = 'Department'
 
 
@@ -58,8 +57,6 @@ c.execute("ALTER TABLE {tn} ADD COLUMN '{cn}' {ct}"\
         .format(tn=table_name2, cn=new_column10, ct=column_type))
 c.execute("ALTER TABLE {tn} ADD COLUMN '{cn}' {ct}"\
         .format(tn=table_name2, cn=new_column8, ct=column_type1))
-c.execute("ALTER TABLE {tn} ADD COLUMN '{cn}' {ct}"\
-        .format(tn=table_name2, cn=new_column9, ct=column_type1))
 
 c.execute("ALTER TABLE {tn} ADD COLUMN '{cn}' {ct}"\
         .format(tn=table_name3, cn=new_column6, ct=column_type))
