@@ -57,6 +57,7 @@ for idx, faculty in enumerate(facultyCodes):
     #print(subjectCodes)
 
 
+
     for index, subject in enumerate(subjectCodes):
 
             
