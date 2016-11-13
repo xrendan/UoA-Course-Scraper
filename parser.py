@@ -8,6 +8,20 @@ Created on Sat Nov 12 12:21:30 2016
 
 from bs4 import BeautifulSoup
 import requests
+import sqlite3
+
+sqlite_file = 'course_listings.sqlite'   
+table_name = 'courses'
+id_column = 'CourseNumber' # name of the PRIMARY KEY column
+column1 = 'CourseName'  # name of the new column
+column2 = 'CourseDescription'  # name of the new column
+column3 = 'Department'
+column4 = 'Faculty'
+
+conn = sqlite3.connect(sqlite_file)
+c = conn.cursor()
+
+
 
 
 
@@ -43,7 +57,7 @@ for idx, faculty in enumerate(facultyCodes):
     #print(subjectCodes)
 
 
-    for subject in subjectCodes:
+    for index, subject in enumerate(subjectCodes):
 
             
         s = requests.get("https://catalogue.ualberta.ca/Course/Subject", params = {"subjectCode": subject})

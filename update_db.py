@@ -10,11 +10,13 @@ import sqlite3
 
 sqlite_file = 'course_listings.sqlite'   
 table_name = 'courses'
-id_column = 'Course Number' # name of the PRIMARY KEY column
+id_column = 'CourseNumber' # name of the PRIMARY KEY column
 new_column1 = 'CourseName'  # name of the new column
 new_column2 = 'CourseDescription'  # name of the new column
 new_column3 = 'Department'
 new_column4 = 'Faculty'
+
+
 new_column5 = 'PreReq1'
 new_column6 = 'PreReq2'
 new_column7 = 'PreReq3'
@@ -26,6 +28,12 @@ new_column11 = 'CoReq2'
 new_column12 = 'CoReq3'
 new_column13 = 'CoReq4'
 new_column14 = 'CoReq5'
+
+new_column15 = 'Conflict1'
+new_column16 = 'Conflict2'
+new_column17 = 'Conflict3'
+new_column18 = 'Conflict4'
+new_column19 = 'Conflict5'
 
 column_type = 'TEXT' # E.g., INTEGER, TEXT, NULL, REAL, BLOB
 
@@ -62,7 +70,16 @@ c.execute("ALTER TABLE {tn} ADD COLUMN '{cn}' {ct}"\
         .format(tn=table_name, cn=new_column13, ct=column_type))
 c.execute("ALTER TABLE {tn} ADD COLUMN '{cn}' {ct}"\
         .format(tn=table_name, cn=new_column14, ct=column_type))
-
+c.execute("ALTER TABLE {tn} ADD COLUMN '{cn}' {ct}"\
+        .format(tn=table_name, cn=new_column15, ct=column_type))
+c.execute("ALTER TABLE {tn} ADD COLUMN '{cn}' {ct}"\
+        .format(tn=table_name, cn=new_column16, ct=column_type))
+c.execute("ALTER TABLE {tn} ADD COLUMN '{cn}' {ct}"\
+        .format(tn=table_name, cn=new_column17, ct=column_type))
+c.execute("ALTER TABLE {tn} ADD COLUMN '{cn}' {ct}"\
+        .format(tn=table_name, cn=new_column18, ct=column_type))
+c.execute("ALTER TABLE {tn} ADD COLUMN '{cn}' {ct}"\
+        .format(tn=table_name, cn=new_column19, ct=column_type))
 
 # Committing changes and closing the connection to the database file
 conn.commit()
