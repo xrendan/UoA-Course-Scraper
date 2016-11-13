@@ -7,7 +7,6 @@ Created on Sat Nov 12 22:03:31 2016
 """
 
 import sqlite3
-import time
 
 conn = sqlite3.connect("course_listings.sqlite")
 c = conn.cursor()
