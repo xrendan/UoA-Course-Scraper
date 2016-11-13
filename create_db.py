@@ -20,10 +20,10 @@ field_type = 'TEXT'  # column data type
 conn = sqlite3.connect(sqlite_file)
 c = conn.cursor()
 
-c.execute('CREATE TABLE {tn} ({nf} {ft})'.format(tn = table_name, nf = new_field, ft = field_type))
-c.execute('CREATE TABLE {tn} ({nf} {ft})'.format(tn = table_name1, nf = new_field, ft = field_type))
-c.execute('CREATE TABLE {tn} ({nf} {ft})'.format(tn = table_name2, nf = new_field, ft = field_type))
-c.execute('CREATE TABLE {tn} ({nf} {ft})'.format(tn = table_name3, nf = new_field, ft = field_type))
+c.execute('CREATE TABLE {tn} ({nf} {ft} primary key)'.format(tn = table_name, nf = new_field, ft = field_type))
+c.execute('CREATE TABLE {tn} ({nf} {ft} primary key)'.format(tn = table_name1, nf = new_field, ft = field_type))
+c.execute('CREATE TABLE {tn} ({nf} {ft} primary key)'.format(tn = table_name2, nf = new_field, ft = field_type))
+c.execute('CREATE TABLE {tn} ({nf} {ft} primary key)'.format(tn = table_name3, nf = new_field, ft = field_type))
 
 conn.commit()
 conn.close()
