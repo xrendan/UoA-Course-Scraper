@@ -8,8 +8,25 @@ Created on Sat Nov 12 12:21:30 2016
 
 from bs4 import BeautifulSoup
 import requests
+import sqlite3
+
+sqlite_file = 'course_listings.sqlite'   
+table_name = 'courses'
+id_column = 'CourseNumber' # name of the PRIMARY KEY column
+column0 = 'CourseURL'
+column1 = 'CourseName'  # name of the new column
+column2 = 'CourseDescription'  # name of the new column
+column3 = 'Department'
+column4 = 'Faculty'
+
+conn = sqlite3.connect(sqlite_file)
+c = conn.cursor()
+counter = 0
 
 
+
+
+#The following code scrapes The University of Alberta Course Catalogue and Prints all of the courses offered
 soup_Faculties = BeautifulSoup(requests.get("https://catalogue.ualberta.ca/Course").text, "html.parser")
 
 faculty_Links = soup_Faculties.find("table").find_all("a")
@@ -40,10 +57,12 @@ for idx, faculty in enumerate(facultyCodes):
             pass
     #print(subjectCodes)
 
-
-    for subject in subjectCodes:
-
-            
+    faculty = facultyNames[idx]
+    #print(faculty)
+    for index, subject in enumerate(subjectCodes):
+        subject2 = subjectNames[index]
+        #print(subject2)    
+        
         s = requests.get("https://catalogue.ualberta.ca/Course/Subject", params = {"subjectCode": subject})
         soup = BeautifulSoup(s.text, "html.parser")
         courses = soup.find_all("div", class_="claptrap-course")
@@ -51,13 +70,25 @@ for idx, faculty in enumerate(facultyCodes):
         for i in courses:
             
             #course number
-            print(i.find("span", class_="claptrap-course-number").string.strip())
-            
+            courNum = i.find("span", class_="claptrap-course-number").string.strip()
+            #print(courNum)
             #course name
-            print(i.find("span", class_="claptrap-course-title").string.strip())
+            courName = i.find("span", class_="claptrap-course-title").string.strip()
+            
+            #course url
+            courURL = "https://catalogue.ualberta.ca/" + i.find("a").attrs["href"]
             
             #Course Description
             try:
-                print(i.find("p").contents[2].strip())
+                courDesc = i.find("p").contents[2].strip()
             except:
-                print("No Description Available")
+                courDesc = "No Description Available"
+                
+            c.execute("INSERT INTO courses VALUES (?, ?, ?, ?, ?, ?)", (courNum, courURL, courName, courDesc, subject2, faculty))
+            #print((courNum, courURL, courName, courDesc, subject2, faculty))
+            counter += 1
+            print(counter)
+            
+            
+conn.commit()
+conn.close()
