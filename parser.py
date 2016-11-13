@@ -58,6 +58,9 @@ for idx, faculty in enumerate(facultyCodes):
             #course name
             print(i.find("span", class_="claptrap-course-title").string.strip())
             
+            #course url
+            print("https://catalogue.ualberta.ca/" + i.find("a").attrs["href"])
+            
             #Course Description
             try:
                 print(i.find("p").contents[2].strip())
