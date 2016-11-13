@@ -10,12 +10,19 @@ from bs4 import BeautifulSoup
 import requests
 import sqlite3
 
+   
+sqlite_file = 'course_listings.sqlite'    
+table_name = 'courses'  # name of the table to be created
+new_field = 'Course Number' # name of the column
+field_type = 'INTEGER'  # column data type
 
+conn = sqlite3.connect(sqlite_file)
+c = conn.cursor()
 
+c.execute('CREATE TABLE {tn} ({nf} {ft})'.format(tn = table_name, nf = new_field, ft = field_type))
 
-
-
-
+conn.commit()
+conn.close()
 
 
 
@@ -75,3 +82,4 @@ for idx, faculty in enumerate(facultyCodes):
                 print(i.find("p").contents[2].strip())
             except:
                 print("No Description Available")
+                
