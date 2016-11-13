@@ -11,7 +11,7 @@ import sqlite3
    
 sqlite_file = 'course_listings.sqlite'    
 table_name = 'courses'  # name of the table to be created
-new_field = 'Course Number' # name of the column
+new_field = 'CourseNumber' # name of the column
 field_type = 'TEXT'  # column data type
 
 conn = sqlite3.connect(sqlite_file)

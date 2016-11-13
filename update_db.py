@@ -11,10 +11,10 @@ import sqlite3
 sqlite_file = 'course_listings.sqlite'   
 table_name = 'courses'
 id_column = 'Course Number' # name of the PRIMARY KEY column
-new_column1 = 'Course Name'  # name of the new column
-new_column2 = 'Course Description'  # name of the new column
+new_column1 = 'CourseName'  # name of the new column
+new_column2 = 'CourseDescription'  # name of the new column
 new_column3 = 'Department'
-new_column4 = 'Facul;ty'
+new_column4 = 'Faculty'
 new_column5 = 'PreReq1'
 new_column6 = 'PreReq2'
 new_column7 = 'PreReq3'
