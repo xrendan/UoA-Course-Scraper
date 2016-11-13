@@ -11,6 +11,7 @@ import sqlite3
 sqlite_file = 'course_listings.sqlite'   
 table_name = 'courses'
 id_column = 'CourseNumber' # name of the PRIMARY KEY column
+new_column0 = 'CourseURL'
 new_column1 = 'CourseName'  # name of the new column
 new_column2 = 'CourseDescription'  # name of the new column
 new_column3 = 'Department'
@@ -35,13 +36,16 @@ new_column17 = 'Conflict3'
 new_column18 = 'Conflict4'
 new_column19 = 'Conflict5'
 
+
+
 column_type = 'TEXT' # E.g., INTEGER, TEXT, NULL, REAL, BLOB
 
 # Connecting to the database file
 conn = sqlite3.connect(sqlite_file)
 c = conn.cursor()
 
-# A) Adding a new column without a row value
+c.execute("ALTER TABLE {tn} ADD COLUMN '{cn}' {ct}"\
+        .format(tn=table_name, cn=new_column0, ct=column_type))
 c.execute("ALTER TABLE {tn} ADD COLUMN '{cn}' {ct}"\
         .format(tn=table_name, cn=new_column1, ct=column_type))
 c.execute("ALTER TABLE {tn} ADD COLUMN '{cn}' {ct}"\
