@@ -8,8 +8,22 @@ Created on Sat Nov 12 12:21:30 2016
 
 from bs4 import BeautifulSoup
 import requests
+import sqlite3
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+#The following code scrapes The University of Alberta Course Catalogue and Prints all of the courses offered
 soup_Faculties = BeautifulSoup(requests.get("https://catalogue.ualberta.ca/Course").text, "html.parser")
 
 faculty_Links = soup_Faculties.find("table").find_all("a")
