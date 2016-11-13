@@ -12,7 +12,7 @@ import sqlite3
 sqlite_file = 'course_listings.sqlite'    
 table_name = 'courses'  # name of the table to be created
 table_name1 = 'prerequisites'  # name of the table to be created
-table_name2 = 'conflicts'  # name of the table to be created
+table_name2 = 'programs'  # name of the table to be created
 table_name3 = 'corequisites'  # name of the table to be created
 new_field = 'CourseNum' # name of the column
 field_type = 'TEXT'  # column data type
